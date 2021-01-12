@@ -52,7 +52,7 @@ def train_model(sym_net, model_prefix, dataset, input_conf, clip_length=16, trai
 								lr=lr_base, momentum=0.9, weight_decay=0.0001, nesterov=True)
 
 	# load params from pretrained 3d network
-	if resume_epoch < 0:
+	if resume_epoch > 0:
 		logging.info("Initializer:: resuming model from previous training")
 
 	# resume training: model and optimizer
