@@ -1,0 +1,6 @@
+5	Run
+6	Sit
+7	Stand
+8	Turn
+9	Walk
+10	Wave
