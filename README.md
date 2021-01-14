@@ -1,52 +1,38 @@
-# Framework for Action Recognition and Action Recognition in the Dark
+# Base (Reference) Framework for UG2+ Track 2.1 Challenge: Fully Supervised Action Recognition in the Dark
 
-This repository contains the framework for Action Recognition in the Dark.
+This repository contains the framework for UG2+ Track 2.1 Challenge: Fully Supervised Action Recognition in the Dark.
 
 ## Prerequisites
 
 This code is based on PyTorch, you may need to install the following packages:
 ```
-PyTorch >= 0.4 (perfer 1.2 and above)
+PyTorch >= 1.2 (tested on 1.2/1.4/1.5/1.6)
 opencv-python (pip install)
-PILLOW (pip install) (optional for optical flow)
-scikit-video (optional for optical flow)
 ```
 
 ## Training
 
-Train with initialization from pre-trained models:
+Training:
 ```
-python train_arid11.py --network <Network Name> --is-dark
+python train_arid_t1.py --network <Network Name>
 ```
-There are a number of parameters that can be further tuned. We recommend a batch size of 16 per GPU.
-We provide several networks that can be utilized, and can be found in the ```/network``` folder, change the ```--network``` parameter to toggle through the networks
+- There are a number of parameters that can be further tuned. We recommend a batch size of 8 per GPU. Here we provide an example where the 3D-ResNet (18 layers) network is used. This network is directly imported from torchvision. You may use any other networks by putting the network into the /network folder. Do note that it is recommended you run the network once within the /network folder to debug before you run training.
 
 ## Testing
 
-Evaluate the trained model:
+To generate the zipfile to be submitted, use the following commands:
 ```
-cd test
-python evaluate_video.py
+cd predict
+python predict_video.py
 ```
-If models with optical flow is used, the following command is used instead:
+You may change the resulting zipfile name by changing the "--zip-file" configuration in the code, or simply by changing the configuration dynamically by
 ```
-cd test
-python evaluate_flow.py
+python predict_video.py --zip-file <YOUR PREFERRED ZIPFILE NAME>
 ```
 
 ## Other Information
 
-<!-- - To download our dataset, click on [this link](https://xuyu0010.github.io/arid.html) -->
-- To download the dataset, please write to xuyu0014@e.ntu.edu.sg for the download link. Thank you! [__Update!__]
+- For more about the rules, regulations about this competition, do visit our site [here](http://cvpr2021.ug2challenge.org/track2.html)
 - To view our paper, go to [this arxiv link](http://arxiv.org/abs/2006.03876)
-- If you find our paper useful, please cite our paper:
-```
-@article{xu2020arid,
-  title={ARID: A New Dataset for Recognizing Action in the Dark},
-  author={Xu, Yuecong and Yang, Jianfei and Cao, Haozhi and Mao, Kezhi and Yin, Jianxiong and See, Simon},
-  journal={arXiv preprint arXiv:2006.03876},
-  year={2020}
-}
-```
 - Our code base is adapted from [Multi-Fiber Network for Video Recognition](https://github.com/cypw/PyTorch-MFNet), we would like to thank the authors for providing the code base.
-- You may contact me through xuyu0014@e.ntu.edu.sg
+- You may contact me through cvpr2021.ug2challenge@gmail.com
